@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jumblr_v3.a.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Jumblr_v3.a.UI
         public UCGame()
         {
             InitializeComponent();
+            TxtBlkWordDisplay.Text = Functionalities.printWord();
+            LblScore.Text = Functionalities.Scoring();
+        }
+        private void BtnEnter_Click(object sender, RoutedEventArgs e)
+        {
+            TxtBlkWordDisplay.Text = Functionalities.printWord();
         }
     }
 }
