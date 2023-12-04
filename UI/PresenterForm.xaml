@@ -11,6 +11,7 @@
         Height="650" 
         Width="1000"
         Background="Transparent"
+        MouseDown="Window_MouseDown"
         AllowsTransparency="True">
     <Grid>
         <Border CornerRadius="20"

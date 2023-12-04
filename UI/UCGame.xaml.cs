@@ -29,7 +29,32 @@ namespace Jumblr_v3.a.UI
         }
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
+
             TxtBlkWordDisplay.Text = Functionalities.printWord();
+        }
+        private void BtnHint_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHintComponents();
+            TxtBlkHintDisplay.Text = Functionalities.printHint();
+        }
+        private void BtnSuffle_Click(object sender, RoutedEventArgs e)// resuffles the word
+        {
+            TxtBlkWordDisplay.Text = Functionalities.ReShuffle();
+        }
+        private void BtnBack_Click(object sender, RoutedEventArgs e)// sets the visibility of the hint component to false
+        {
+            TxtBlkHintDisplay.Visibility = Visibility.Collapsed;
+            BorderHint.Visibility = Visibility.Collapsed;
+            BtnBack.Visibility = Visibility.Collapsed;
+        }
+        /// <summary>
+        /// Extra Functions
+        /// </summary>
+        private void ShowHintComponents()// set the visibility of the hint components to true
+        {
+            TxtBlkHintDisplay.Visibility = Visibility.Visible;
+            BorderHint.Visibility = Visibility.Visible;
+            BtnBack.Visibility = Visibility.Visible;
         }
     }
 }

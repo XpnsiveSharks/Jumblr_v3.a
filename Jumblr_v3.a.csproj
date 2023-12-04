@@ -114,7 +114,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\BackBtn.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\XButton.png" />
   </ItemGroup>

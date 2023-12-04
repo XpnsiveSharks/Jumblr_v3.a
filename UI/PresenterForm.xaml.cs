@@ -25,6 +25,11 @@ namespace Jumblr_v3.a.UI
             UCGame uCGame = new UCGame();
             userControlPresenter.Content = uCGame;
         }
+        private void Window_MouseDown(Object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
         private void BtnResize_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
