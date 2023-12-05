@@ -17,26 +17,36 @@ namespace Jumblr_v3.a.Commons
         static int TrackCorrectGuess = 0;
         static int Score = 0;
         static bool IsNotCorrectAns = false;
+        static bool IsHintTriggered = false;
+        static bool IsPrintWordTriggered = false;
 
         public static string Scoring()// returns the total score
            => $"Score: {Score}";
         public static string TrackLevel()// tracks the correct guess
            => TrackCorrectGuess.ToString();
-
-        public static string WrongGuessMessage() // returns wrong guess message
+        public static int StoreLastWord()
+        {
+            if (IsHintTriggered == true && IsPrintWordTriggered == true)
+            {
+                return 1;
+            }
+        }
+        public static int WrongGuess() // returns wrong guess binary t and f
         {
             if (IsNotCorrectAns == true)
             {
                 IsNotCorrectAns = false;
-                return "Wrong Answer!";
+                return 1;
             }
             else
             {
-                return null;
+                return 0;
             }
-        }
-        public static string printWord()   //returns scrambled words
+        } 
+        public static string printWord()//returns scrambled words
         {
+            IsPrintWordTriggered = true;
+            IsHintTriggered = false;
             if (TrackCorrectGuess <= 20)
             {
                 return ScrambleWord(EasyWordsInfo[radomNumberGenerator()].WORD);
@@ -59,7 +69,8 @@ namespace Jumblr_v3.a.Commons
             if (TrackCorrectGuess <= 20)
                 if (Score >= 3)
                 {
-                    Score -= 2;
+                    IsHintTriggered = true;
+                    Score -= 3;
                     return EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
                 }
                 else
@@ -67,18 +78,20 @@ namespace Jumblr_v3.a.Commons
                     return "Score must be more than equal to 3";
                 }
             else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
-                if (Score >= 3)
+                if (Score >= 4)
                 {
-                    Score -= 3;
+                    IsHintTriggered = true;
+                    Score -= 4;
                     return AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
                 }
                 else
                 {
-                    return "Score must be more than equal to 5";
+                    return "Score must be more than equal to 4";
                 }
             else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
                 if (Score >= 5)
                 {
+                    IsHintTriggered = true;
                     Score -= 5;
                     return DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
                 }
@@ -86,6 +99,23 @@ namespace Jumblr_v3.a.Commons
                 {
                     return "Score must be more than equal to 5";
                 }
+            else
+                return null;
+        }
+        public static string printActiveHint()// prints the hint of the current word
+        {
+            if (TrackCorrectGuess <= 20)
+            {
+                return EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
+            }
+            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
+            {
+                return AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
+            }
+            else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
+            {
+                return DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].HINT;
+            }
             else
                 return null;
         }
@@ -117,7 +147,7 @@ namespace Jumblr_v3.a.Commons
                 Score += 2;
                 return printWord();
             }
-            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 60 && input.ToLower().Equals(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD))
+            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 60 && input.ToLower().Equals(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD ))
             {
                 TrackCorrectGuess += 1;
                 Score += 3;
@@ -132,16 +162,22 @@ namespace Jumblr_v3.a.Commons
             else
             {
                 IsNotCorrectAns = true;
-                if (TrackCorrectGuess <= 20)
-                    return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
-                else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
-                    return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
-                else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
-                    return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
-                else
-                    return null;
+                return RePrintWord();
             }
         }
+        public static string RePrintWord()
+        {
+            IsPrintWordTriggered = false;
+            if (TrackCorrectGuess <= 20)
+                return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
+                return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+            else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
+                return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+            else
+                return null;
+        }
+
         /// <summary>
         /// number randomizer
         /// </summary>
@@ -153,7 +189,7 @@ namespace Jumblr_v3.a.Commons
             if (UsedNumber.Count == 20)
             {
                 UsedNumber.Clear();
-                for (int i = 0; i <= 19; i++) // set base on the data source count
+                for (int i = 0; i <= 39; i++) // set base on the data source count
                     numbers.Add(i);
                 index = random.Next(numbers.Count); //randomly pick a number from the numbers List
 
@@ -164,7 +200,7 @@ namespace Jumblr_v3.a.Commons
             }
             else
             {
-                for (int i = 0; i <= 19; i++) // set base on the data source count
+                for (int i = 0; i <= 39; i++) // set base on the data source count
                     numbers.Add(i);
                 index = random.Next(numbers.Count); //randomly pick a number from the numbers List
 
@@ -187,6 +223,7 @@ namespace Jumblr_v3.a.Commons
             {
                 if (word.Contains(' '))// Check if the word contains spaces
                 {
+                    
                     string[] words = word.Split(' ');// Split the word into two words
 
                     string randomizedWord1 = ScrambleWord(words[0]);

@@ -56,5 +56,11 @@ namespace Jumblr_v3.a.UI
             nextWindow.Show();
             this.Close();
         }
+        private void BtnInformation_Click(object sender, RoutedEventArgs e)
+        {
+            FormInformation nextWindow = new FormInformation();
+            nextWindow.Show();
+            this.Close();
+        }
     }
 }

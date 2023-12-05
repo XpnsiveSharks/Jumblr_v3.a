@@ -60,9 +60,13 @@
     <Compile Include="Commons\Functionalities.cs" />
     <Compile Include="Commons\IAttributes.cs" />
     <Compile Include="Commons\WordAttributes.cs" />
+    <Compile Include="Designs\FormDesignFunctions.cs" />
     <Compile Include="UI\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\FormInformation.xaml.cs">
+      <DependentUpon>FormInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\PresenterForm.xaml.cs">
       <DependentUpon>PresenterForm.xaml</DependentUpon>
@@ -101,6 +105,10 @@
     <None Include="UI\App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="UI\FormInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\PresenterForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,9 +138,6 @@
     <Resource Include="Resources\BackGround.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Enter.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Hint.png" />
     <Resource Include="Resources\Reshuffle.png" />
   </ItemGroup>
@@ -142,6 +147,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Presenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Average.png" />
+    <Resource Include="Resources\Difficult.png" />
+    <Resource Include="Resources\Easy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\InfoBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sadShark.png" />
+    <Resource Include="Resources\SharkWrongAns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Enter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ActiveHint.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,19 +21,19 @@
         </Grid.RowDefinitions>
         <Border Grid.Column="1" Width="490" Height="300" Grid.Row="0" Margin="0,0,0,40" Padding="5" BorderThickness="1" BorderBrush="White" Background="White" CornerRadius="30">
             <TextBlock
-            x:Name="TxtBlkWordDisplay"
-            HorizontalAlignment="Left" 
-            Height="285" 
-            Margin="0,0,0,0" 
-            TextWrapping="Wrap" 
-            Text="mercury" 
-            VerticalAlignment="Top" 
-            Width="480"
-            TextAlignment="Center"
-            FontFamily="Comic Sans MS"
-            FontSize="40"
-            FontWeight="Heavy"
-            Padding="90"
+                x:Name="TxtBlkWordDisplay"
+                HorizontalAlignment="Left" 
+                Height="285" 
+                Margin="0,0,0,0" 
+                TextWrapping="Wrap" 
+                Text="mercury" 
+                VerticalAlignment="Top" 
+                Width="480"
+                TextAlignment="Center"
+                FontFamily="Comic Sans MS"
+                FontSize="40"
+                FontWeight="Heavy"
+                Padding="105"
             />
         </Border>
         <Border x:Name="BorderHint" Visibility="Collapsed" Grid.Column="1" Width="490" Height="300" Grid.Row="0" Margin="0,0,0,40" Padding="5" BorderThickness="1" BorderBrush="White" Background="White" CornerRadius="30">
@@ -54,23 +54,81 @@
                 Padding="0"
                 />
         </Border>
-        <Button x:Name="BtnEnter"  Grid.Column="1" Grid.Row="2" Width="210" Height="80" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnEnter_Click">
+        <Button x:Name="BtnEnter"  Grid.Column="1" Grid.Row="2" Width="195" Height="75" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnEnter_Click">
             <Image Source="pack://application:,,,/Resources/Enter.png" Width="200" Height="70"/>
         </Button>
-        <Button Visibility="Collapsed" x:Name="BtnBack"  Grid.Column="1" Grid.Row="2" Width="210" Height="80" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnBack_Click">
-            <Image Source="pack://application:,,,/Resources/BackBtn.png" Width="200" Height="70"/>
+        <Button Visibility="Collapsed" x:Name="BtnBack"  Grid.Column="1" Grid.Row="2" Width="198" Height="78" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnBack_Click">
+            <Image Source="pack://application:,,,/Resources/BackBtn.png" Width="205" Height="75"/>
         </Button>
         <Button x:Name="BtnSuffle"  Grid.Column="1" Grid.Row="2" Width="60" Height="60" HorizontalAlignment="Left" Margin="50,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnSuffle_Click">
             <Image Source="pack://application:,,,/Resources/Reshuffle.png" Width="80" Height="50"/>
         </Button>
-        <Button x:Name="BtnHint"  Grid.Column="1" Grid.Row="2" Width="50" Height="60" HorizontalAlignment="Right" Margin="0,0,70,0" Background="Transparent" BorderBrush="Transparent" Click="BtnHint_Click">
-            <Image Source="pack://application:,,,/Resources/Hint.png" Width="50" Height="50"/>
+        <Button 
+            x:Name="BtnHint"  
+            Grid.Column="1" 
+            Grid.Row="2" 
+            Width="51" 
+            Height="61" 
+            HorizontalAlignment="Right" 
+            Margin="0,0,70,0" 
+            Background="Transparent" 
+            BorderBrush="Transparent" 
+            Click="BtnHint_Click">
+            <Image 
+                Source="pack://application:,,,/Resources/Hint.png" 
+                Width="52" 
+                Height="53"/>
         </Button>
-        <TextBox Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Center" Height="42" Margin="0,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="485" TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="20" VerticalContentAlignment="Center"/>
-        <TextBlock x:Name="LblScore" Grid.Column="2" HorizontalAlignment="Left" Height="38" Margin="70,10,0,0" TextWrapping="Wrap" Text="Score: " VerticalAlignment="Top" Width="170" FontFamily="Comic Sans MS"
-        FontSize="30"
-        FontWeight="Heavy"
-        />
-
+        <TextBox x:Name="TxtBlkAnswer" Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Center" Height="42" Margin="0,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="485" TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="20" VerticalContentAlignment="Center"/>
+        <TextBlock 
+            x:Name="LblScore" 
+            Grid.Column="2" 
+            HorizontalAlignment="Left" 
+            Height="38" 
+            Margin="70,10,0,0" 
+            TextWrapping="Wrap" 
+            Text="Score: " 
+            VerticalAlignment="Top" 
+            Width="170" 
+            FontFamily="Comic Sans MS"
+            FontSize="30"
+            FontWeight="Heavy"/>
+        <Image 
+            x:Name="Difficulty" 
+            Height="50" 
+            VerticalAlignment="Top" 
+            Margin="0,20,80,0" 
+            Source="pack://application:,,,/Jumblr_v3.a;component/Resources/Easy.png"/>
+        <Image 
+            Visibility="Collapsed" 
+            Grid.Column="2" 
+            x:Name="WrongAnsImage1" 
+            Height="300" 
+            Width="300" 
+            VerticalAlignment="Center" 
+            Margin="0,0,0,0" 
+            Source="pack://application:,,,/Jumblr_v3.a;component/Resources/SharkWrongAns.png"/>
+        <Image 
+            Visibility="Collapsed" 
+            Grid.Column="0" 
+            x:Name="WrongAnsImage2" 
+            Height="200" 
+            Width="200" 
+            VerticalAlignment="Center" 
+            Margin="0,90,0,0" 
+            Source="pack://application:,,,/Jumblr_v3.a;component/Resources/sadShark.png"/>
+        <Button Visibility="Collapsed" x:Name="BtnActiveHint"  
+                Grid.Column="1" 
+                Grid.Row="2" 
+                Width="52" 
+                Height="57" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,70,0" 
+                Background="Transparent" 
+                BorderBrush="Transparent" 
+                >
+            <Image 
+                Source="pack://application:,,,/Resources/ActiveHint.png" Width="54" Height="55"/>
+        </Button>
     </Grid>
 </UserControl>

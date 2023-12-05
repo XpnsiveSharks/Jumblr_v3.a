@@ -36,7 +36,7 @@ namespace Jumblr_v3.a.Commons
                 new DataSource{WORD = "data", HINT = "Information processed or stored by a computer."},
                 new DataSource{WORD = "mouse", HINT = "Pointing device used with computers."},
                 new DataSource{WORD = "pixel", HINT = "Smallest unit of a digital image."},
-                new DataSource{WORD = "RAM", HINT = "Random Access Memory in a computer."},
+                new DataSource{WORD = "ram", HINT = "Random Access Memory in a computer."},
                 new DataSource{WORD = "server", HINT = "Computer system that provides services to other computers."},
                 new DataSource{WORD = "virus", HINT = "Malicious software that can harm a computer."},
                 new DataSource{WORD = "webcam", HINT = "Camera used for video conferencing or surveillance."},

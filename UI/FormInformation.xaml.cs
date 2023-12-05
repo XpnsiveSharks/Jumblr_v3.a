@@ -15,21 +15,25 @@ using System.Windows.Shapes;
 namespace Jumblr_v3.a.UI
 {
     /// <summary>
-    /// Interaction logic for PresenterForm.xaml
+    /// Interaction logic for FormInformation.xaml
     /// </summary>
-    public partial class PresenterForm : Window
+    public partial class FormInformation : Window
     {
-        public PresenterForm()
+        public FormInformation()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            UCGame uCGame = new UCGame();
-            userControlPresenter.Content = uCGame;
         }
         private void Window_MouseDown(Object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
+        }
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to exit the Jumblr app?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                Application.Current.Shutdown();
         }
         private void BtnResize_Click(object sender, RoutedEventArgs e)
         {
@@ -46,11 +50,11 @@ namespace Jumblr_v3.a.UI
         {
             WindowState = WindowState.Minimized;
         }
-        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to exit the Jumblr app?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-                Application.Current.Shutdown();
+            StartMenu nextWindow = new StartMenu();
+            nextWindow.Show();
+            this.Close();
         }
     }
 }
