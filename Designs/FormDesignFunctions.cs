@@ -55,19 +55,6 @@ namespace Jumblr_v3.a.Designs
                 timer.Start();// Start the timer
             }
         }
-        public static void HideFormComponents(params Control[] controls)
-        {
-            foreach (Control control in controls)
-            {
-                control.Visibility = Visibility.Collapsed;
-            }
-        }
-        public static void ShowFormComponents(params Control[] controls)
-        {
-            foreach (Control control in controls)
-            {
-                control.Visibility = Visibility.Visible;
-            }
-        }
+
     }
 }
