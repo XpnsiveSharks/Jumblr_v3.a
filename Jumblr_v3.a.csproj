@@ -172,5 +172,14 @@
   <ItemGroup>
     <Resource Include="Resources\ActiveHint.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\0percent.png" />
+    <Resource Include="Resources\1percent.png" />
+    <Resource Include="Resources\2percent.png" />
+    <Resource Include="Resources\3percent.png" />
+    <Resource Include="Resources\4percent.png" />
+    <Resource Include="Resources\5percent.png" />
+    <Resource Include="Resources\6percent.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
