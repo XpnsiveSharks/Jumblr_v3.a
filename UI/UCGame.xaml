@@ -117,7 +117,8 @@
             VerticalAlignment="Center" 
             Margin="0,90,0,0" 
             Source="pack://application:,,,/Jumblr_v3.a;component/Resources/sadShark.png"/>
-        <Button Visibility="Collapsed" x:Name="BtnActiveHint"  
+        <Button Visibility="Collapsed" 
+                x:Name="BtnActiveHint"  
                 Grid.Column="1" 
                 Grid.Row="2" 
                 Width="52" 
@@ -125,7 +126,8 @@
                 HorizontalAlignment="Right" 
                 Margin="0,0,70,0" 
                 Background="Transparent" 
-                BorderBrush="Transparent" 
+                BorderBrush="Transparent"
+                Click="BtnActiveHint_Click"
                 >
             <Image 
                 Source="pack://application:,,,/Resources/ActiveHint.png" Width="54" Height="55"/>

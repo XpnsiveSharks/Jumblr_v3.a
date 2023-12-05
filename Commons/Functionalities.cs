@@ -18,19 +18,17 @@ namespace Jumblr_v3.a.Commons
         static int Score = 0;
         static bool IsNotCorrectAns = false;
         static bool IsHintTriggered = false;
-        static bool IsPrintWordTriggered = false;
+        //static bool IsPrintWordTriggered = false;
 
         public static string Scoring()// returns the total score
            => $"Score: {Score}";
         public static string TrackLevel()// tracks the correct guess
            => TrackCorrectGuess.ToString();
-        public static int StoreLastWord()
-        {
-            if (IsHintTriggered == true && IsPrintWordTriggered == true)
-            {
-                return 1;
-            }
-        }
+       /* public static bool PrintWordTriggered()// tracks the correct guess
+           => IsPrintWordTriggered;*/
+        public static bool HintTriggered()
+           => IsHintTriggered;
+
         public static int WrongGuess() // returns wrong guess binary t and f
         {
             if (IsNotCorrectAns == true)
@@ -45,7 +43,7 @@ namespace Jumblr_v3.a.Commons
         } 
         public static string printWord()//returns scrambled words
         {
-            IsPrintWordTriggered = true;
+           // IsPrintWordTriggered = true;
             IsHintTriggered = false;
             if (TrackCorrectGuess <= 20)
             {
@@ -167,7 +165,7 @@ namespace Jumblr_v3.a.Commons
         }
         public static string RePrintWord()
         {
-            IsPrintWordTriggered = false;
+            //IsPrintWordTriggered = false;
             if (TrackCorrectGuess <= 20)
                 return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
             else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)

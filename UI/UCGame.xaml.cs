@@ -36,6 +36,7 @@ namespace Jumblr_v3.a.UI
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         { 
             TxtBlkWordDisplay.Text = Functionalities.VerifyAnswer(TxtBlkAnswer.Text);
+            ButtonActiveHintVisibility();
             FormDesignFunctions.WrongAnswerImage(WrongAnsImage1, WrongAnsImage2, TxtBlkWordDisplay);
             LblScore.Text = Functionalities.Scoring();
             FormDesignFunctions.TrackDifficulty(Difficulty);
@@ -44,11 +45,15 @@ namespace Jumblr_v3.a.UI
         private void BtnHint_Click(object sender, RoutedEventArgs e)
         {
             ShowHintComponents();
-            TxtBlkAnswer.Visibility = Visibility.Collapsed;
+            
             TxtBlkHintDisplay.Text = Functionalities.printHint();
-            /*MessageBox.Show($"{Functionalities.IsNotActiveHint()}");
-            //CheckActiveHint();*/
+            ButtonActiveHintVisibility();
             LblScore.Text = Functionalities.Scoring();
+        }
+        private void BtnActiveHint_Click(object sender, RoutedEventArgs e)// sets the visibility of the hint component to false
+        {
+            ShowAcitiveHintComponents();
+            TxtBlkHintDisplay.Text = Functionalities.printActiveHint();
         }
         private void BtnSuffle_Click(object sender, RoutedEventArgs e)// reshuffles the word
         {
@@ -69,19 +74,23 @@ namespace Jumblr_v3.a.UI
             TxtBlkHintDisplay.Visibility = Visibility.Visible;
             BorderHint.Visibility = Visibility.Visible;
             BtnBack.Visibility = Visibility.Visible;
+            TxtBlkAnswer.Visibility = Visibility.Collapsed;
         }
-        /*public void CheckActiveHint()
+        private void ShowAcitiveHintComponents()
         {
-            if (Functionalities.IsPrintWordTriggered() == true && Functionalities.IsNotActiveHint() == false)
-            {
-                BtnActiveHint.Visibility = Visibility.Collapsed;
-                //TxtBlkHintDisplay.Text = Functionalities.printActiveHint();
-                TxtBlkHintDisplay.Text = Functionalities.printHint();
-            }
-            else if (Functionalities.IsPrintWordTriggered() == false && )
-            {
+            TxtBlkHintDisplay.Visibility = Visibility.Visible;
+            BorderHint.Visibility = Visibility.Visible;
+            BtnBack.Visibility = Visibility.Visible;
+            TxtBlkAnswer.Visibility = Visibility.Collapsed;
+        }
+        private void ButtonActiveHintVisibility()
+        {
+            if (Functionalities.HintTriggered() == true)
+                BtnActiveHint.Visibility = Visibility.Visible;
+
+            if (Functionalities.HintTriggered() == false)
+                BtnActiveHint.Visibility = Visibility.Collapsed; 
                 
-            }
-        }*/
+        }
     }
 }
