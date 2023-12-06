@@ -11,7 +11,6 @@ namespace Jumblr_v3.a.Commons
         static DataSource[] EasyWordsInfo = DataSource.GetArrayOfEasyWords();
         static DataSource[] AverageWordsInfo = DataSource.GetArrayOfAverageWords();
         static DataSource[] DifficultWordsInfo = DataSource.GetArrayOfDifficultWords();
-
         static Random random = new Random();
         static List<int> UsedNumber = new List<int>();//List of Used index
         static int TrackCorrectGuess = 0;
@@ -47,22 +46,22 @@ namespace Jumblr_v3.a.Commons
             IsHintTriggered = false;
             if (TrackCorrectGuess <= 20)
             {
-                return ScrambleWord(EasyWordsInfo[radomNumberGenerator()].WORD);
+                return ScrambleWord(EasyWordsInfo[radomNumberGenerator()].WORDS);
             }
             else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
             {
-                return ScrambleWord(AverageWordsInfo[radomNumberGenerator()].WORD);
+                return ScrambleWord(AverageWordsInfo[radomNumberGenerator()].WORDS);
             }
             else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
             {
-                return ScrambleWord(DifficultWordsInfo[radomNumberGenerator()].WORD);
+                return ScrambleWord(DifficultWordsInfo[radomNumberGenerator()].WORDS);
             }
             else
             {
                 return "Congratulations You Completed the Jumblr Game";
             }
         }
-        public static string printHint()// prints the hint of the current word
+        public static string printHint()//prints the hint of the current word
         {
             if (TrackCorrectGuess <= 20)
                 if (Score >= 3)
@@ -124,11 +123,11 @@ namespace Jumblr_v3.a.Commons
         public static string ReShuffle()// returns resuffled words
         {
             if (TrackCorrectGuess <= 20)
-                return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
-                return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
-                return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else
                 return "Congratulations You Completed the Jumblr Game";
         }
@@ -139,19 +138,19 @@ namespace Jumblr_v3.a.Commons
         /// <returns></returns>
         public static string VerifyAnswer(string input)//verefies the answer of the user
         {
-            if (TrackCorrectGuess <= 20 && input.ToLower().Equals(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD))
+            if (TrackCorrectGuess <= 20 && input.ToLower().Equals(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
             {
                 TrackCorrectGuess += 1;
                 Score += 2;
                 return printWord();
             }
-            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 60 && input.ToLower().Equals(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD ))
+            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 60 && input.ToLower().Equals(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
             {
                 TrackCorrectGuess += 1;
                 Score += 3;
                 return printWord();
             }
-            else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60 && input.ToLower().Equals(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD))
+            else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60 && input.ToLower().Equals(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
             {
                 TrackCorrectGuess += 1;
                 Score += 5;
@@ -167,11 +166,11 @@ namespace Jumblr_v3.a.Commons
         {
             //IsPrintWordTriggered = false;
             if (TrackCorrectGuess <= 20)
-                return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 40)
-                return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60)
-                return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORD);
+                return ScrambleWord(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS);
             else
                 return null;
         }
@@ -183,7 +182,7 @@ namespace Jumblr_v3.a.Commons
         static int radomNumberGenerator()// index randomizer
         {
             var numbers = new List<int>();// creates a range of number that will be randomly picked
-            int index = 0;
+            int index;
             if (UsedNumber.Count == 20)
             {
                 UsedNumber.Clear();
@@ -244,7 +243,7 @@ namespace Jumblr_v3.a.Commons
                     randomizedWord = new string(characters);
                 }
             } while (IsSimilar(randomizedWord, word)); // Check if randomized word is similar to original word
-
+           
             return randomizedWord;
         }
         private static bool IsSimilar(string word1, string word2)// Check if the lengths of the words differ by more than 2 characters
@@ -261,7 +260,5 @@ namespace Jumblr_v3.a.Commons
             double similarityScore = (double)matchingCharacters / Math.Min(word1.Length, word2.Length); // Calculate the similarity score based on the number of matching characters
             return similarityScore > 0.7;// Consider the words similar if the similarity score is above 0.7
         }
-
-
     }
 }

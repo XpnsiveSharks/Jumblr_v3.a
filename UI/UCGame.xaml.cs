@@ -28,7 +28,7 @@ namespace Jumblr_v3.a.UI
     {
         
         public UCGame()
-        {
+        { 
             InitializeComponent();
             TxtBlkWordDisplay.Text = Functionalities.printWord();
             LblScore.Text = Functionalities.Scoring();
@@ -45,7 +45,6 @@ namespace Jumblr_v3.a.UI
         private void BtnHint_Click(object sender, RoutedEventArgs e)
         {
             ShowHintComponents();
-            
             TxtBlkHintDisplay.Text = Functionalities.printHint();
             ButtonActiveHintVisibility();
             LblScore.Text = Functionalities.Scoring();

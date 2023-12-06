@@ -8,7 +8,8 @@ namespace Jumblr_v3.a.Commons
 {
     public class AttributesBase : IAttributes
     {
-        public string WORD { get; set; }
+        public string WORDS { get; set; }
         public string HINT { get; set; }
+        public string DIFFICULTY { get; set; }
     }
 }

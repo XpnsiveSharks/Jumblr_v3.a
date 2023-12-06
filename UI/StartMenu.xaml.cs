@@ -51,7 +51,7 @@ namespace Jumblr_v3.a.UI
             WindowState = WindowState.Minimized;
         }
         private void BtnStart_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             PresenterForm nextWindow = new PresenterForm();
             nextWindow.Show();
             this.Close();

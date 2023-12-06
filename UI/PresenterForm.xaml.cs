@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Jumblr_v3.a.UI.UCMenu;
 
 namespace Jumblr_v3.a.UI
 {
@@ -19,12 +20,14 @@ namespace Jumblr_v3.a.UI
     /// </summary>
     public partial class PresenterForm : Window
     {
+
         public PresenterForm()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             UCGame uCGame = new UCGame();
             userControlPresenter.Content = uCGame;
+
         }
         private void Window_MouseDown(Object sender, MouseEventArgs e)
         {
