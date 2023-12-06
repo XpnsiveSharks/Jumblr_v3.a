@@ -14,9 +14,7 @@
         Background="Transparent"
         AllowsTransparency="True">
     <Grid>
-        <Border CornerRadius="20"
-     BorderBrush="AliceBlue"
-     BorderThickness="5">
+        <Border CornerRadius="20">
             <Border.Background>
                 <ImageBrush ImageSource="pack://application:,,,/Resources/Information.png"/>
             </Border.Background>
