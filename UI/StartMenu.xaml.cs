@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime;
+using System.Data.SQLite;
+using System.Data;
+using Dapper;
+using System.Configuration;
+
 namespace Jumblr_v3.a.UI
 {
     /// <summary>
@@ -61,6 +66,30 @@ namespace Jumblr_v3.a.UI
             FormInformation nextWindow = new FormInformation();
             nextWindow.Show();
             this.Close();
+        }
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+
+                    string updateQuery = "DELETE FROM TBL_HIGHSCORE";
+
+                    cnn.Execute(updateQuery);
+
+                    MessageBox.Show("Scores cleared successfully!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private static string LoadConnectionString(string id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

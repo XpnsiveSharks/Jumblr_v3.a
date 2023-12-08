@@ -17,8 +17,7 @@ namespace Jumblr_v3.a.Commons
         static int Score = 0;
         static bool IsNotCorrectAns = false;
         static bool IsHintTriggered = false;
-        //static bool IsPrintWordTriggered = false;
-
+        
         public static string Scoring()// returns the total score
            => $"Score: {Score}";
         public static string TrackLevel()// tracks the correct guess
@@ -158,6 +157,7 @@ namespace Jumblr_v3.a.Commons
             }
             else
             {
+                trackMaximumWrongGuess--;
                 IsNotCorrectAns = true;
                 return RePrintWord();
             }
@@ -260,5 +260,55 @@ namespace Jumblr_v3.a.Commons
             double similarityScore = (double)matchingCharacters / Math.Min(word1.Length, word2.Length); // Calculate the similarity score based on the number of matching characters
             return similarityScore > 0.7;// Consider the words similar if the similarity score is above 0.7
         }
+        //************************************(Challenge Mode) I'll optimize this soon*************************************************//
+
+        //GetArrayOfWordsForChallengeMode
+        private static int trackMaximumWrongGuess = 3;
+        public static int LivesLeft()
+            => trackMaximumWrongGuess;
+
+        public static int GameOver()
+        {
+            if(trackMaximumWrongGuess == 0) return 0;
+            return trackMaximumWrongGuess;
+        }
+        public static int ScoringForChallengeMode()// returns the total score
+          => Score;
+        public static void ResetDataFromFunctions()
+        {
+            UsedNumber.Clear();
+            TrackCorrectGuess = 0;
+            Score = 0;
+            IsNotCorrectAns = false;
+            IsHintTriggered = false;
+            trackMaximumWrongGuess = 3;
+        }
+        /*public static string VerifyAnswerForChallenge(string input)//verefies the answer of the user
+        {
+            if (TrackCorrectGuess <= 20 && input.ToLower().Equals(EasyWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
+            {
+                TrackCorrectGuess += 1;
+                Score += 2;
+                return printWord();
+            }
+            else if (TrackCorrectGuess >= 21 && TrackCorrectGuess <= 60 && input.ToLower().Equals(AverageWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
+            {
+                TrackCorrectGuess += 1;
+                Score += 3 ;
+                return printWord();
+            }
+            else if (TrackCorrectGuess >= 41 && TrackCorrectGuess <= 60 && input.ToLower().Equals(DifficultWordsInfo[UsedNumber[UsedNumber.Count - 1]].WORDS.ToLower()))
+            {
+                TrackCorrectGuess += 1;
+                Score += 5;
+                return printWord();
+            }
+            else
+            {
+                
+                IsNotCorrectAns = true;
+                return RePrintWord();
+            }
+        }*/
     }
 }

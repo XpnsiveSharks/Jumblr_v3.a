@@ -55,12 +55,29 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.2.1.24\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="EO.Base, Version=23.4.5.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>packages\EO.WebBrowser.23.4.5\lib\EO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=23.4.5.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>packages\EO.WebBrowser.23.4.5\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=23.4.5.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>packages\EO.WebBrowser.23.4.5\lib\EO.WebEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Slack.Webhooks, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Slack.Webhooks.1.1.5\lib\net45\Slack.Webhooks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,9 +97,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commons\AttributesBase.cs" />
+    <Compile Include="Commons\DataQueries.cs" />
     <Compile Include="Commons\DataSource.cs" />
     <Compile Include="Commons\Functionalities.cs" />
     <Compile Include="Commons\IAttributes.cs" />
+    <Compile Include="Commons\Score.cs" />
     <Compile Include="Designs\FormDesignFunctions.cs" />
     <Compile Include="UI\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -101,14 +120,26 @@
     <Compile Include="UI\StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\UCBestTImes.xaml.cs">
       <DependentUpon>UCBestTImes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UCChallegeMode.xaml.cs">
+      <DependentUpon>UCChallegeMode.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\UCGame.xaml.cs">
       <DependentUpon>UCGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\UCGameOver.xaml.cs">
+      <DependentUpon>UCGameOver.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\UCMenu.xaml.cs">
       <DependentUpon>UCMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UCSettings.xaml.cs">
+      <DependentUpon>UCSettings.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +156,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Menu.png" />
+    <Resource Include="Resources\TryAgain.png" />
+    <Resource Include="Resources\GameOver.png" />
+    <Resource Include="Resources\ChallengeModeHSBG.png" />
+    <Resource Include="Resources\Settings.png" />
+    <Resource Include="Resources\Heart.png" />
+    <Resource Include="Resources\adventureMode.png" />
+    <Resource Include="Resources\challengeMode.png" />
     <Resource Include="Resources\second.png" />
     <Resource Include="Resources\third.png" />
     <Resource Include="Resources\bestRecord.png" />
@@ -165,7 +204,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\UCBestTImes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\UCChallegeMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,7 +220,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\UCGameOver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\UCMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\UCSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

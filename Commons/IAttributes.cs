@@ -11,6 +11,6 @@ namespace Jumblr_v3.a.Commons
         string WORDS { get; set; }
         string HINT { get; set; }
         string DIFFICULTY { get; set; }
-
+        int SCORE {  get; set; }
     }
 }

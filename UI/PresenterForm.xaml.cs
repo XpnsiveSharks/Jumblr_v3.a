@@ -18,17 +18,18 @@ namespace Jumblr_v3.a.UI
     /// <summary>
     /// Interaction logic for PresenterForm.xaml
     /// </summary>
-    public partial class PresenterForm : Window
-    {
+        public partial class PresenterForm : Window
+        {
 
+        UCMenu UCMenu { get; set; }
         public PresenterForm()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            UCGame uCGame = new UCGame();
-            userControlPresenter.Content = uCGame;
-
+            UCMenu = new UCMenu();
+            userControlPresenter.Content = UCMenu;
         }
+
         private void Window_MouseDown(Object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

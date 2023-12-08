@@ -26,32 +26,27 @@ namespace Jumblr_v3.a.UI
     /// </summary>
     public partial class UCGame : UserControl
     {
-        
         public UCGame()
         { 
             InitializeComponent();
             TxtBlkWordDisplay.Text = Functionalities.printWord();
             LblScore.Text = Functionalities.Scoring();
+            Loaded += Test_Loaded;
         }
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
-        { 
-            TxtBlkWordDisplay.Text = Functionalities.VerifyAnswer(TxtBlkAnswer.Text);
-            ButtonActiveHintVisibility();
-            FormDesignFunctions.WrongAnswerImage(WrongAnsImage1, WrongAnsImage2, TxtBlkWordDisplay);
-            LblScore.Text = Functionalities.Scoring();
-            FormDesignFunctions.TrackDifficulty(Difficulty);
-            TxtBlkAnswer.Text = "";
+        {
+            EnterEvents();
         }
         private void BtnHint_Click(object sender, RoutedEventArgs e)
         {
-            ShowHintComponents();
+            FormDesignFunctions.ShowHintComponents(TxtBlkHintDisplay, BorderHint, BtnBack, TxtBlkAnswer);
             TxtBlkHintDisplay.Text = Functionalities.printHint();
-            ButtonActiveHintVisibility();
+            FormDesignFunctions.ButtonActiveHintVisibility(BtnActiveHint);
             LblScore.Text = Functionalities.Scoring();
         }
         private void BtnActiveHint_Click(object sender, RoutedEventArgs e)// sets the visibility of the hint component to false
         {
-            ShowAcitiveHintComponents();
+            FormDesignFunctions.ShowHintComponents(TxtBlkHintDisplay, BorderHint, BtnBack, TxtBlkAnswer);
             TxtBlkHintDisplay.Text = Functionalities.printActiveHint();
         }
         private void BtnSuffle_Click(object sender, RoutedEventArgs e)// reshuffles the word
@@ -60,29 +55,34 @@ namespace Jumblr_v3.a.UI
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)// sets the visibility of the hint component to false
         {
-            TxtBlkHintDisplay.Visibility = Visibility.Collapsed;
-            BorderHint.Visibility = Visibility.Collapsed;
-            BtnBack.Visibility = Visibility.Collapsed;
-            TxtBlkAnswer.Visibility = Visibility.Visible;
+            FormDesignFunctions.HideHintComponents(TxtBlkHintDisplay, BorderHint, BtnBack, TxtBlkAnswer);
         }
+        //******************************Test Code, I am not totally familliar with but I use it***************************//
+        private void BtnGoToMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Functionalities.ResetDataFromFunctions();
+            UCMenu ucMenu = new UCMenu();
+            FormDesignFunctions.AlterContentPresenterContent(this, ucMenu);
+        }
+        //****************************************************************************************************************//
         /// <summary>
         /// Extra Functions
         /// </summary>
-        private void ShowHintComponents()// set the visibility of the hint components to true
+        /*private void ShowHintComponents()// set the visibility of the hint components to true
         {
             TxtBlkHintDisplay.Visibility = Visibility.Visible;
             BorderHint.Visibility = Visibility.Visible;
             BtnBack.Visibility = Visibility.Visible;
             TxtBlkAnswer.Visibility = Visibility.Collapsed;
-        }
-        private void ShowAcitiveHintComponents()
+        }*/
+        /*private void ShowAcitiveHintComponents()
         {
             TxtBlkHintDisplay.Visibility = Visibility.Visible;
             BorderHint.Visibility = Visibility.Visible;
             BtnBack.Visibility = Visibility.Visible;
             TxtBlkAnswer.Visibility = Visibility.Collapsed;
-        }
-        private void ButtonActiveHintVisibility()
+        }*/
+        /*private void ButtonActiveHintVisibility()
         {
             if (Functionalities.HintTriggered() == true)
                 BtnActiveHint.Visibility = Visibility.Visible;
@@ -90,6 +90,42 @@ namespace Jumblr_v3.a.UI
             if (Functionalities.HintTriggered() == false)
                 BtnActiveHint.Visibility = Visibility.Collapsed; 
                 
+        }*/
+        //*********************************To be edited soon**********************************************//
+        private void EnterEvents()
+        {
+            if (TxtBlkAnswer.Text == "")
+            {
+                MessageBox.Show("Answer must be not null");
+            }
+            else
+            {
+                TxtBlkWordDisplay.Text = Functionalities.VerifyAnswer(TxtBlkAnswer.Text);
+                FormDesignFunctions.ButtonActiveHintVisibility(BtnActiveHint);
+                FormDesignFunctions.WrongAnswerImage(WrongAnsImage1, WrongAnsImage2, TxtBlkWordDisplay);
+                LblScore.Text = Functionalities.Scoring();
+                FormDesignFunctions.TrackDifficulty(Difficulty);
+                TxtBlkAnswer.Text = "";
+            }
+        }
+        private void Test_Loaded(object sender, RoutedEventArgs e)
+        {
+            OnEnterPressed += Test_OnEnterPressed;  
+        }
+        private void Test_OnEnterPressed(object sender, EventArgs e)
+        {
+            EnterEvents();
+        }
+        public delegate void OnEnterPressedEventHandler(object sender, EventArgs e);
+        public event OnEnterPressedEventHandler OnEnterPressed;
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (e.Key == Key.Enter)
+            {
+                OnEnterPressed?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -21,6 +21,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Column="1" Width="490" Height="300" Grid.Row="0" Margin="0,0,0,40" Padding="5" BorderThickness="1" BorderBrush="White" Background="White" CornerRadius="30">
             <TextBlock
+                
                 x:Name="TxtBlkWordDisplay"
                 HorizontalAlignment="Left" 
                 Height="285" 
@@ -44,14 +45,14 @@
                 Height="285" 
                 Margin="0,0,0,0" 
                 TextWrapping="Wrap" 
-                Text="mercury" 
+                Text="" 
                 VerticalAlignment="Top" 
                 Width="480"
                 TextAlignment="Center"
                 FontFamily="Comic Sans MS"
                 FontSize="40"
                 FontWeight="Heavy"
-                Padding="0"
+                Padding="40"
                 />
         </Border>
         <Button x:Name="BtnEnter"  Grid.Column="1" Grid.Row="2" Width="195" Height="75" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtnEnter_Click">
@@ -79,7 +80,7 @@
                 Width="52" 
                 Height="53"/>
         </Button>
-        <TextBox x:Name="TxtBlkAnswer" Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Center" Height="42" Margin="0,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="485" TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="20" VerticalContentAlignment="Center"/>
+        <TextBox Style="{DynamicResource RoundCornerTextBoxStyle}"  x:Name="TxtBlkAnswer" Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Center" Height="42" Margin="0,370,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="485" TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="20" VerticalContentAlignment="Center"/>
         <TextBlock 
             x:Name="LblScore" 
             Grid.Column="2" 
@@ -92,7 +93,8 @@
             Width="170" 
             FontFamily="Comic Sans MS"
             FontSize="30"
-            FontWeight="Heavy"/>
+            FontWeight="Heavy"
+            Foreground="#4459a9"/>
         <Image 
             x:Name="Difficulty" 
             Height="50" 
@@ -132,5 +134,38 @@
             <Image 
                 Source="pack://application:,,,/Resources/ActiveHint.png" Width="54" Height="55"/>
         </Button>
+        <Button 
+            x:Name="BtnGoToMenu" 
+            Grid.Column="2" 
+            Grid.Row="2" 
+            Width="55" 
+            Height="55" 
+            HorizontalAlignment="Right" 
+            VerticalAlignment="Bottom" 
+            Margin="0,0,10,-20" 
+            Background="Transparent" 
+            BorderBrush="Transparent" 
+            Click="BtnGoToMenu_Click">
+            <Image Source="pack://application:,,,/Resources/InfoBack.png" Width="50" Height="50"/>
+        </Button>
     </Grid>
+
+    <UserControl.Resources>
+        <Style TargetType="TextBox" x:Key="RoundCornerTextBoxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="txtBorder"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 </UserControl>

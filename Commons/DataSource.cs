@@ -53,7 +53,20 @@ namespace Jumblr_v3.a.Commons
             List<AttributesBase> attributesList = LoadWordInfo("difficult");
             return DataSourceList(attributesList);
         }
-
+        //*****************************************************Challenge Mode*******************************************************************//
+        public static List<AttributesBase> LoadWordInfoForChallengeMode()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<AttributesBase>($"SELECT WORDS, HINT FROM TBL_WORDSINFO WHERE DIFFICULTY IN ('easy', 'average')", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+        public static DataSource[] GetArrayOfWordsForChallengeMode()
+        {
+            List<AttributesBase> attributesList = LoadWordInfoForChallengeMode();
+            return DataSourceList(attributesList);
+        }
         //original code
         /*public static List<AttributesBase> LoadWordInfo()
         {
